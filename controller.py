@@ -17,7 +17,7 @@ pwm_4 = gpio.PWM(35, 1000)
 
 max_duty_cycle = 65
 
-max_back_duty_cycle  = int(sys.argv[0])
+max_back_duty_cycle = 40
 
 gamepadType = Gamepad.XboxONE
 
