@@ -1,6 +1,7 @@
 import Gamepad
 import time
 import RPi.GPIO as gpio
+import sys
 
 gpio.setmode(gpio.BOARD)
 
@@ -15,6 +16,8 @@ pwm_3 = gpio.PWM(33, 1000)
 pwm_4 = gpio.PWM(35, 1000)
 
 max_duty_cycle = 65
+
+max_back_duty_cycle  = int(sys.argv[0])
 
 gamepadType = Gamepad.XboxONE
 
@@ -47,9 +50,9 @@ try:
 			right_speed = (gamepad.axis("RT") + 1.0) / 2.0
 			left_speed = (gamepad.axis("LT") + 1.0) / 2.0
 			if direction:
-				pwm_1.ChangeDutyCycle(left_speed * (max_duty_cycle * 0.3))
+				pwm_1.ChangeDutyCycle(left_speed * max_back_duty_cycle)
 				pwm_2.ChangeDutyCycle(0)
-				pwm_3.ChangeDutyCycle(right_speed * (max_duty_cycle * 0.3))
+				pwm_3.ChangeDutyCycle(right_speed * max_back_duty_cycle)
 				pwm_4.ChangeDutyCycle(0)
 			else:
 				pwm_1.ChangeDutyCycle(0)
