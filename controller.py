@@ -14,7 +14,7 @@ pwm_2 = gpio.PWM(32, 1000)
 pwm_3 = gpio.PWM(33, 1000)
 pwm_4 = gpio.PWM(35, 1000)
 
-max_duty_cycle = 60
+max_duty_cycle = 65
 
 gamepadType = Gamepad.XboxONE
 
@@ -34,10 +34,10 @@ try:
 	pwm_4.start(0)
 	while gamepad.isConnected():
 		if gamepad.isPressed("B"):
-			pwm_1.ChangeDutyCycle(left_speed * max_duty_cycle)
+			pwm_1.ChangeDutyCycle(max_duty_cycle)
 			pwm_2.ChangeDutyCycle(0)
 			pwm_3.ChangeDutyCycle(0)
-			pwm_4.ChangeDutyCycle(right_speed * max_duty_cycle)
+			pwm_4.ChangeDutyCycle(max_duty_cycle)
 		else:
 			direction = gamepad.isPressed("A");
 			if gamepad.beenPressed("X"):
@@ -53,9 +53,9 @@ try:
 				pwm_4.ChangeDutyCycle(0)
 			else:
 				pwm_1.ChangeDutyCycle(0)
-				pwm_2.ChangeDutyCycle(left_speed * max_duty_cycle)
+				pwm_2.ChangeDutyCycle(left_speed * (max_duty_cycle * 0.3))
 				pwm_3.ChangeDutyCycle(0)
-				pwm_4.ChangeDutyCycle(right_speed * max_duty_cycle)
+				pwm_4.ChangeDutyCycle(right_speed * (max_duty_cycle * 0.3))
 		
 finally:
 	gpio.cleanup()
