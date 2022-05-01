@@ -16,7 +16,6 @@ pwm_3 = gpio.PWM(33, 1000)
 pwm_4 = gpio.PWM(35, 1000)
 
 max_duty_cycle = 65
-
 max_back_duty_cycle  = int(sys.argv[0])
 
 gamepadType = Gamepad.XboxONE
@@ -43,7 +42,8 @@ try:
 			pwm_4.ChangeDutyCycle(max_duty_cycle)
 		else:
 			direction = gamepad.isPressed("A");
-			if gamepad.beenPressed("X"):
+			slow_mode = gamepad.isPressed("")
+			if gamepad.beenPressed("Y"):
 				break
 			#if gamepad.beenPressed("A"):
 			#	print("A")
